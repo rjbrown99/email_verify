@@ -7,6 +7,12 @@
  */
 
 /**
+ * Constant: Default number of seconds to cache valid hosts/domains. Defaults to
+ * 30 days. Overridden by setting variable email_verify_cached_valid.
+ */
+define('EMAIL_VERIFY_CACHED_VALID', 2592000);
+
+/**
  * Implementation of hook_help().
  * @return
  * Help text for section.
@@ -71,6 +77,10 @@ function email_verify_menu() {
   return $items;
 }
 
-// Local Variables:
-// mode: php
-// End:
+/**
+ * Implementation of hook_cron().
+ */
+function email_verify_cron() {
+  require_once dirname(__FILE__) . '/email_verify.inc.php';
+  _email_verify_cleandb();
+}
