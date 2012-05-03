@@ -58,6 +58,16 @@ function email_verify_menu() {
     'type' => MENU_LOCAL_TASK, 
     'file' => 'email_verify.check.inc',
   );
+
+  $items['admin/settings/email_verify'] = array(
+    'title' => 'Email Verify',
+    'description' => 'Configuration page for Email Verify.',
+    'page callback' => 'email_verify_admin_page',
+    'access arguments' => array('administer site configuration'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'email_verify.admin.inc',
+  );
+
   return $items;
 }
 

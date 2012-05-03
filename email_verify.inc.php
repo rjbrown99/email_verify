@@ -18,6 +18,13 @@ function _email_verify_check($mail) {
     return t('Email host %host invalid, please retry.', array('%host' => "$host"));
   }
 
+  if ($whitelist = variable_get('email_verify_whitelist', FALSE)) {
+    $whitelist = explode("\n", $whitelist);
+    if (in_array($host, $whitelist)) {
+      return;
+    }
+  }
+
   // What SMTP servers should we contact?
   $mx_hosts = array();
   if (!getmxrr($host, $mx_hosts)) {
