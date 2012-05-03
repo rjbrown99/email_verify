@@ -5,57 +5,6 @@
  */
 
 /**
- * Implementation of hook_schema().
- */
-function email_verify_schema() {
-  $schema['email_verify'] = array(
-    'description' => 'Stores domains that were properly validated.',
-    'fields' => array(
-      'domain' => array(
-        'type' => 'varchar',
-        'length' => 64,
-        'not null' => FALSE,
-        'default' => '',
-        'description' => "Email domain.",
-      ),
-      'validated' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'default' => 0,
-        'description' => 'Timestamp for when domain was validated.',
-      ),
-      'status' => array(
-        'type' => 'int',
-        'not null' => TRUE,
-        'default' => 0,
-        'size' => 'tiny',
-        'description' => 'Whether the domain is valid(1) or invalid(0)',
-      ),
-    ),
-    'primary key' => array('domain'),
-    'indexes' => array(
-      'domain_status' => array('domain', 'status'),
-    ),
-  );
-
-  return $schema;
-}
-
-/**
- * Implementation of hook_install().
- */
-function email_verify_install() {
-  drupal_install_schema('email_verify');
-}
-
-/**
- * Implementation of hook_uninstall().
- */
-function email_verify_uninstall() {
-  drupal_uninstall_schema('email_verify');
-}
-
-/**
  * Implementation of hook_enable().
  */
 function email_verify_enable() {
@@ -106,9 +55,6 @@ function email_verify_enable() {
   }
 }
 
-/**
- * Update 6101 - Install database schema.
- */
-function email_verify_update_6101() {
-  drupal_install_schema('email_verify');
-}
+// Local Variables:
+// mode: php
+// End:
