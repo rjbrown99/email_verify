@@ -35,7 +35,7 @@ function email_verify_user($op, &$edit, &$account, $category = NULL) {
 
 function email_verify_edit_validate($uid, &$edit) {
   // Validate the e-mail address:
-  if ($error = email_verify_check($edit['mail'])) {
+  if (($error = email_verify_check($edit['mail'])) && ($edit['op'] != t('Delete'))) {
     form_set_error('mail', $error);
   }
   return $edit;
