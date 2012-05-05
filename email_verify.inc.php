@@ -22,6 +22,11 @@ function _email_verify_check($mail) {
     return;
   }
 
+  // Only add include if we are running Windows
+  if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+    include_once dirname(__FILE__) . '/windows_compat.inc';
+  }
+
   $host = substr(strchr($mail, '@'), 1);
 
   // If the domain is not cached, perform tests
