@@ -63,7 +63,7 @@ function _email_verify_check($mail) {
         // (dynamic/residential IP for aol.com for instance)
         // Be on the safe side and accept the address, at least it has a valid
         // domain part...
-        watchdog('email_verify', "Could not verify email address at host $host: $out");
+        watchdog('email_verify', "Could not verify email address at host $host: $out for $mail");
         return;
       }
     }
